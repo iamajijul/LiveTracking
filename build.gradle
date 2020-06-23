@@ -1,0 +1,126 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    ext.versions = [
+
+            'minSdk'                : 27,
+            'compileSdk'            : 29,
+            'code'                  : 1,
+            'versionName'           : '1.0',
+            'android_gradle'        : '3.6.3',
+            'navigation_gradle'     : '2.3.0-rc01',
+            'kotlin'                : '1.3.72',
+            'appcompat'             : '1.1.0',
+            'activity_viewmodel_ktx': '1.1.0',
+            'core_ktx'              : '1.3.0',
+            'constraintlayout'      : '1.1.3',
+            'junit_ext'             : '1.1.1',
+            'junit'                 : '4.12',
+            'espresso'              : '3.2.0',
+            'google_material'       : '1.3.0-alpha01',
+            'view_model'            : '2.2.0',
+            'room'                  : '2.2.5',
+            'coroutines'            : '1.3.7',
+            'navigation'            : '2.2.2',
+            'lifecycle'             : '1.1.1',
+            'glide'                 : '4.11.0',
+            'google_play_services'  : '17.0.0',
+            'dagge_core'            : '2.25.4',
+            'dagger_compiler'       : '2.25.2',
+            'dagger_android'        : '2.23.2',
+            'dagger_hilt_plugin':'2.28-alpha',
+            'android_hilt'          : '2.28-alpha',
+            'hilt'                  : '1.0.0-alpha01',
+            'easypermissions'       : '3.0.0',
+            'timber'                : '4.7.1',
+            'MPAndroidChart'        : 'v3.1.0'
+    ]
+
+    ext.deps = [
+            android: [
+                    'gradle'           : "com.android.tools.build:gradle:$versions.android_gradle",
+                    'constraint_layout': "androidx.constraintlayout:constraintlayout:${versions.constraintlayout}",
+                    'appcompat'        : "androidx.appcompat:appcompat:${versions.appcompat}",
+                    'core'             : "androidx.core:core-ktx:${versions.core_ktx}",
+                    'junit'            : "junit:junit:${versions.junit}",
+                    'junit_ext'        : "androidx.test.ext:junit:${versions.junit_ext}",
+                    'espresso'         : "androidx.test.espresso:espresso-core:${versions.espresso}",
+            ],
+            kotlin : [
+                    'kotlin_gradle'         : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
+                    'stdlib'                : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
+                    'coroutine_core'        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
+                    'coroutine_android'     : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
+                    'activity_viewmodel_ktx': "androidx.activity:activity-ktx:${versions.activity_viewmodel_ktx}",
+
+            ],
+            ac     : [
+                    'lifecycle_viewmodel': "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.view_model}",
+                    'lifecycle_runtime'  : "androidx.lifecycle:lifecycle-runtime-ktx:${versions.view_model}",
+                    'room_runtime'       : "androidx.room:room-runtime:${versions.room}",
+                    'room_compiler'      : "androidx.room:room-compiler:${versions.room}",
+                    'room_ktx'           : "androidx.room:room-ktx:${versions.room}",
+                    'navigation_fragment': "androidx.navigation:navigation-fragment-ktx:${versions.navigation}",
+                    'navigation_ui'      : "androidx.navigation:navigation-ui-ktx:${versions.navigation}",
+                    'navigation_gradle'  : "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigation_gradle}",
+                    'lifecycle'          : "android.arch.lifecycle:extensions:${versions.lifecycle}",
+            ],
+            glide  : [
+                    'glide'         : "com.github.bumptech.glide:glide:${versions.glide}",
+                    'glide_compiler': "com.github.bumptech.glide:compiler:${versions.glide}",
+            ],
+            google : [
+                    'google_material': "com.google.android.material:material:${versions.google_material}",
+                    'location'       : "com.google.android.gms:play-services-location:${versions.google_play_services}",
+                    'map'            : "com.google.android.gms:play-services-maps:${versions.google_play_services}"
+            ],
+            dagger : [
+                    'dagger_core'                 : "com.google.dagger:dagger:${versions.dagger_core}",
+                    'dagger_compiler'             : "com.google.dagger:dagger-compiler:${versions.dagger_compiler}",
+                    'dagger_android'              : "com.google.dagger:dagger-android:${versions.dagger_android}",
+                    'dagger_android_support'      : "com.google.dagger:dagger-android-support:${versions.dagger_android}",
+                    'dagger_android_processor'    : "com.google.dagger:dagger-android-processor:${versions.dagger_android}",
+                    'dagger_android_hilt'         : "com.google.dagger:hilt-android:${versions.android_hilt}",
+                    'dagger_android_hilt_compiler': "com.google.dagger:hilt-android-compiler:${versions.android_hilt}",
+                    'hilt_viewModel'              : "androidx.hilt:hilt-lifecycle-viewmodel:${versions.hilt}",
+                    'hilt_compiler'               : "androidx.hilt:hilt-compiler:${versions.hilt}",
+                    'hilt_plugin'               : "com.google.dagger:hilt-android-gradle-plugin:${versions.dagger_hilt_plugin}",
+            ],
+            other  : [
+                    'easypermissions': "pub.devrel:easypermissions:${versions.easypermissions}",
+                    'timber'         : "com.jakewharton.timber:timber:${versions.timber}",
+                    'MPAndroidChart' : "com.github.PhilJay:MPAndroidChart:${versions.MPAndroidChart}",
+            ]
+
+    ]
+
+    repositories {
+        google()
+        jcenter()
+
+    }
+    dependencies {
+        classpath deps.android.gradle
+        classpath deps.kotlin.kotlin_gradle
+        classpath deps.ac.navigation_gradle
+        classpath deps.dagger.hilt_plugin
+
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

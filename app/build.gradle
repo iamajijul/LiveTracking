@@ -1,0 +1,118 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply plugin: 'dagger.hilt.android.plugin'
+
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "com.ajijul.livetracking"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.code
+        versionName versions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin.stdlib
+    implementation deps.android.appcompat
+    implementation deps.android.core
+    implementation deps.android.constraint_layout
+    testImplementation deps.android.junit
+    androidTestImplementation deps.android.junit_ext
+    androidTestImplementation deps.android.espresso
+
+    // Material Design
+    implementation deps.google.google_material
+
+
+    // Room
+    implementation deps.ac.room_runtime
+    kapt deps.ac.room_compiler
+
+    // Kotlin Extensions and Coroutines support for Room
+    implementation deps.ac.room_ktx
+
+    // Coroutines
+    implementation deps.kotlin.coroutine_core
+    implementation deps.kotlin.coroutine_android
+
+
+    //ViewModel
+    implementation deps.ac.lifecycle_viewmodel
+
+    // Coroutine Lifecycle Scopes
+    implementation deps.ac.lifecycle_runtime
+
+    // Navigation Components
+    implementation deps.ac.navigation_fragment
+    implementation deps.ac.navigation_ui
+
+    //lifecycle
+    implementation deps.ac.lifecycle
+
+    // Glide
+    implementation deps.glide.glide
+    kapt deps.glide.glide_compiler
+
+    // Google Maps Location Services
+    implementation deps.google.location
+    implementation deps.google.map
+
+    // Dagger Core
+    implementation deps.dagger.dagger_core
+    kapt deps.dagger.dagger_compiler
+
+    // Dagger Android
+    api deps.dagger.dagger_android
+    api deps.dagger.dagger_android_support
+    kapt deps.dagger.dagger_android_support
+
+
+    // Activity KTX for viewModels()
+    implementation deps.kotlin.activity_viewmodel_ktx
+
+    //Dagger - Hilt
+    implementation deps.dagger.dagger_android_hilt
+    kapt deps.dagger.dagger_android_hilt_compiler
+
+    implementation deps.dagger.hilt_viewModel
+    kapt deps.dagger.hilt_compiler
+
+    // Easy Permissions
+    implementation deps.other.easypermissions
+
+    // Timber
+    implementation deps.other.timber
+
+    // MPAndroidChart
+    implementation deps.other.MPAndroidChart
+
+}
+kapt {
+    correctErrorTypes true
+}
