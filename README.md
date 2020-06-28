@@ -8,16 +8,16 @@ Because of small project we kept classes in simple way.
 
 ### Folder structure
 
-There are 4 main folders: di, models, network, ui, utils.
+There are 4 main folders: db, di,helper, models, repository, ui, fragments, models
 * db: For database related file
 * di: Contain Dagger Hilt related files
 * helper: This folder contain helper classes
 * repository: This folder holding all repository classes uses in this application.
 * ui: All views related classes present in this folder. The app follows MVVM architecture coding
 pattern for this project.
-** fragments: We are trying something defferent, because of small project we kept all fragment together
+* fragments: We are trying something defferent, because of small project we kept all fragment together
  in this folder
-** viewmodel: All viewmodel classes taking placed in this folder.
+* viewmodel: All viewmodel classes taking placed in this folder.
 
 
 ### Design, libraries and other stuff applied
