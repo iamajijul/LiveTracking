@@ -1,10 +1,13 @@
 package com.ajijul.livetracking.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ajijul.livetracking.R
+import com.ajijul.livetracking.helper.Constants
+import com.ajijul.livetracking.services.TrackingService
 import com.ajijul.livetracking.ui.viewmodel.MainViewModel
 import com.google.android.gms.maps.GoogleMap
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,13 +16,25 @@ import kotlinx.android.synthetic.main.fragment_tracking.*
 @AndroidEntryPoint
 class TrackingFragment : Fragment(R.layout.fragment_tracking) {
     private val viewModel: MainViewModel by viewModels()
-    private var map : GoogleMap? = null
+    private var map: GoogleMap? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync {
             map = it
+        }
+
+        btnToggleRun.setOnClickListener {
+            sendCommandToService(Constants.ACTION_PAUSE_AND_RESUME_SERVICE)
+        }
+    }
+
+
+    private fun sendCommandToService(action: String) {
+        Intent(requireContext(), TrackingService::class.java).let {
+            it.action = action
+            requireContext().startService(it)
         }
     }
 
@@ -32,7 +47,6 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
         super.onResume()
         mapView?.onResume()
     }
-
 
 
     override fun onPause() {

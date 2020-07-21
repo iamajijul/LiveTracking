@@ -5,7 +5,7 @@ buildscript {
     ext.versions = [
 
             'minSdk'                : 27,
-            'compileSdk'            : 29,
+            'compileSdk'            : 30,
             'code'                  : 1,
             'versionName'           : '1.0',
             'android_gradle'        : '4.0.0',

@@ -1,6 +1,7 @@
 package com.ajijul.livetracking.ui.fragments
 
 import android.Manifest
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -8,10 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ajijul.livetracking.R
+import com.ajijul.livetracking.helper.Constants.ACTION_PAUSE_AND_RESUME_SERVICE
 import com.ajijul.livetracking.helper.Constants.REQUEST_LOCATION_PERMISSION_CODE
+import com.ajijul.livetracking.services.TrackingService
 import com.ajijul.livetracking.ui.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_run.*
+import kotlinx.android.synthetic.main.fragment_tracking.*
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 
@@ -30,6 +34,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
             findNavController().navigate(R.id.action_runFragment_to_trackingFragment)
         }
     }
+
 
     fun requestPermission() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
