@@ -12,6 +12,10 @@ object Constants {
     val ACTION_SHOW_TRACKING_FRAGMENT = "action_show_tracking_fragment"
 
 
+    val LOCATION_UPDATE_INTERVAL = 5000L
+    val FASTEST_LOCATION_INTERVAL = 2000L
+
+
     val NOTIFICATION_CHANNEL_ID = "tracking_channel"
     val NOTIFICATION_NAME = "live_tracking"
     val NOTIFICATION_ID = 1
