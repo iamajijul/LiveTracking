@@ -16,8 +16,9 @@ import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.ajijul.livetracking.R
-import com.ajijul.livetracking.helper.Constants.ACTION_PAUSE_AND_RESUME_SERVICE
+import com.ajijul.livetracking.helper.Constants.ACTION_PAUSE_SERVICE
 import com.ajijul.livetracking.helper.Constants.ACTION_SHOW_TRACKING_FRAGMENT
+import com.ajijul.livetracking.helper.Constants.ACTION_START_AND_RESUME_SERVICE
 import com.ajijul.livetracking.helper.Constants.ACTION_START_SERVICE
 import com.ajijul.livetracking.helper.Constants.ACTION_STOP_SERVICE
 import com.ajijul.livetracking.helper.Constants.FASTEST_LOCATION_INTERVAL
@@ -56,25 +57,31 @@ class TrackingService : LifecycleService() {
         })
     }
 
+
+    fun pauseService(){
+        isTracking.postValue(false)
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         intent?.let {
             when (it.action) {
-                ACTION_START_SERVICE -> {
-                    Timber.d("Action start service")
-                }
-                ACTION_PAUSE_AND_RESUME_SERVICE -> {
+
+                ACTION_START_AND_RESUME_SERVICE -> {
                     if (isFirstRun) {
                         startForegroundService()
                         isFirstRun = false
                     } else {
                         Timber.d("Action resume service")
-
+                        startForegroundService()
                     }
 
                 }
                 ACTION_STOP_SERVICE -> {
                     Timber.d("Action stop service")
 
+                }
+                ACTION_PAUSE_SERVICE->{
+                    pauseService()
                 }
             }
         }

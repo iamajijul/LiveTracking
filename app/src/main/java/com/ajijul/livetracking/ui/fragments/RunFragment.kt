@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ajijul.livetracking.R
-import com.ajijul.livetracking.helper.Constants.ACTION_PAUSE_AND_RESUME_SERVICE
 import com.ajijul.livetracking.helper.Constants.REQUEST_LOCATION_PERMISSION_CODE
 import com.ajijul.livetracking.services.TrackingService
 import com.ajijul.livetracking.ui.viewmodel.MainViewModel
